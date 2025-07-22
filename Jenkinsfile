@@ -3,12 +3,13 @@
      stages {
           stage("Compile") {
                steps {
-                    sh "./gradlew compileJava"
+                    sh "chmod +x ./mvnw"
+                    sh "./mvnw compile"
                }
           }
           stage("Unit test") {
                steps {
-                    sh "./gradlew test"
+                    sh "./mvnw test"
                }
           }
      }
