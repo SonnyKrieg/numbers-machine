@@ -13,8 +13,17 @@
                }
           }
           stage("Code coverage") {
-                sh "./mvnw jacoco:report"
-                sh "./mvnw jacoco:check"
+              steps {
+                  // Ejecutar pruebas y generar cobertura
+                  sh './mvnw clean verify'
+
+                  // Publicar el reporte HTML de JaCoCo en Jenkins
+                  publishHTML (target: [
+                      reportDir: 'target/site/jacoco',
+                      reportFiles: 'index.html',
+                      reportName: 'JaCoCo Report'
+                  ])
+              }
           }
      }
  }
