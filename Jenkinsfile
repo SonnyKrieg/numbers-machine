@@ -12,5 +12,9 @@
                     sh "./mvnw test"
                }
           }
+          stage("Code coverage") {
+                sh "./mvnw jacoco:report"
+                sh "./mvnw jacoco:check"
+          }
      }
  }
